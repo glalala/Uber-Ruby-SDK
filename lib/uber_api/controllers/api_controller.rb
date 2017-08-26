@@ -95,7 +95,7 @@ module UberApi
     # @param [Float] latitude Required parameter: Latitude component of location.
     # @param [Float] longitude Required parameter: Longitude component of location.
     # @return ProductCollection response from the API call
-    def get_products_types(latitude, 
+    def get_products_types(latitude,
                            longitude)
 
       # validate required parameters
@@ -110,7 +110,7 @@ module UberApi
       _query_builder = APIHelper.append_url_with_query_parameters _query_builder, {
         'latitude' => latitude,
         'longitude' => longitude
-      }
+      }, array_serialization: Configuration.array_serialization
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
@@ -190,7 +190,7 @@ module UberApi
       elsif _context.response.status_code == 409
         raise APIException.new 'A conflict needs to be resolved before the request can be made.', _context
       elsif _context.response.status_code == 422
-        raise APIException.new 'Invalid request. The request body is parse-able however with invalid content or there are issues with a rider's user account.', _context
+        raise APIException.new 'Invalid request. The request body is parse-able however with invalid content or there are issues with a rider\'s user account.', _context
       elsif _context.response.status_code == 429
         raise APIException.new 'Too Many Requests. Rate limited.', _context
       elsif _context.response.status_code == 500
@@ -207,7 +207,7 @@ module UberApi
     # @param [Integer] limit Required parameter: Number of items to return for pagging
     # @param [Integer] offset Required parameter: Page offset for pagging
     # @return UserActivity response from the API call
-    def get_user_activity_v_1_1(limit, 
+    def get_user_activity_v_1_1(limit,
                                 offset)
 
       # validate required parameters
@@ -222,7 +222,7 @@ module UberApi
       _query_builder = APIHelper.append_url_with_query_parameters _query_builder, {
         'limit' => limit,
         'offset' => offset
-      }
+      }, array_serialization: Configuration.array_serialization
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
@@ -266,9 +266,9 @@ module UberApi
     # @param [String] customer_uuid Optional parameter: The customer id interested in estimate
     # @param [String] product_id Optional parameter: Id of the requested product
     # @return TimeEstimateCollection response from the API call
-    def get_time_estimates(start_latitude, 
-                           start_longitude, 
-                           customer_uuid = nil, 
+    def get_time_estimates(start_latitude,
+                           start_longitude,
+                           customer_uuid = nil,
                            product_id = nil)
 
       # validate required parameters
@@ -285,7 +285,7 @@ module UberApi
         'start_longitude' => start_longitude,
         'customer_uuid' => customer_uuid,
         'product_id' => product_id
-      }
+      }, array_serialization: Configuration.array_serialization
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
@@ -329,9 +329,9 @@ module UberApi
     # @param [Float] start_latitude Required parameter: Latitude component of start location.
     # @param [Float] start_longitude Required parameter: Longitude component of start location.
     # @return PriceEstimateCollection response from the API call
-    def get_price_estimates(end_latitude, 
-                            end_longitude, 
-                            start_latitude, 
+    def get_price_estimates(end_latitude,
+                            end_longitude,
+                            start_latitude,
                             start_longitude)
 
       # validate required parameters
@@ -350,7 +350,7 @@ module UberApi
         'end_longitude' => end_longitude,
         'start_latitude' => start_latitude,
         'start_longitude' => start_longitude
-      }
+      }, array_serialization: Configuration.array_serialization
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
@@ -430,7 +430,7 @@ module UberApi
       elsif _context.response.status_code == 409
         raise APIException.new 'A conflict needs to be resolved before the request can be made.', _context
       elsif _context.response.status_code == 422
-        raise APIException.new 'Invalid request. The request body is parse-able however with invalid content or there are issues with a rider's user account.', _context
+        raise APIException.new 'Invalid request. The request body is parse-able however with invalid content or there are issues with a rider\'s user account.', _context
       elsif _context.response.status_code == 429
         raise APIException.new 'Too Many Requests. Rate limited.', _context
       elsif _context.response.status_code == 500
@@ -478,7 +478,7 @@ module UberApi
       elsif _context.response.status_code == 409
         raise APIException.new 'A conflict needs to be resolved before the request can be made', _context
       elsif _context.response.status_code == 422
-        raise APIException.new 'Invalid request. The request body is parse-able however with invalid content or there are issues with a rider's user account.', _context
+        raise APIException.new 'Invalid request. The request body is parse-able however with invalid content or there are issues with a rider\'s user account.', _context
       elsif _context.response.status_code == 429
         raise APIException.new 'Too Many Requests. Rate limited.', _context
       elsif _context.response.status_code == 500
@@ -527,7 +527,7 @@ module UberApi
       elsif _context.response.status_code == 409
         raise APIException.new 'A conflict needs to be resolved before the request can be made.', _context
       elsif _context.response.status_code == 422
-        raise APIException.new 'Invalid request. The request body is parse-able however with invalid content or there are issues with a rider's user account.', _context
+        raise APIException.new 'Invalid request. The request body is parse-able however with invalid content or there are issues with a rider\'s user account.', _context
       elsif _context.response.status_code == 429
         raise APIException.new 'Too Many Requests. Rate limited.', _context
       elsif _context.response.status_code == 500
@@ -546,9 +546,9 @@ module UberApi
     # @param [Float] start_latitude Required parameter: Latitude component of start location.
     # @param [Float] start_longitude Required parameter: Longitude component of start location
     # @return PromotionsResponse response from the API call
-    def get_promotions(end_latitude, 
-                       end_longitude, 
-                       start_latitude, 
+    def get_promotions(end_latitude,
+                       end_longitude,
+                       start_latitude,
                        start_longitude)
 
       # validate required parameters
@@ -567,7 +567,7 @@ module UberApi
         'end_longitude' => end_longitude,
         'start_latitude' => start_latitude,
         'start_longitude' => start_longitude
-      }
+      }, array_serialization: Configuration.array_serialization
       _query_url = APIHelper.clean_url _query_builder
 
       # prepare headers
@@ -594,7 +594,7 @@ module UberApi
       elsif _context.response.status_code == 409
         raise APIException.new 'A conflict needs to be resolved before the request can be made.', _context
       elsif _context.response.status_code == 422
-        raise APIException.new 'Invalid request. The request body is parse-able however with invalid content or there are issues with a rider's user account.', _context
+        raise APIException.new 'Invalid request. The request body is parse-able however with invalid content or there are issues with a rider\'s user account.', _context
       elsif _context.response.status_code == 429
         raise APIException.new 'Too Many Requests. Rate limited', _context
       elsif _context.response.status_code == 500

@@ -8,11 +8,11 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["products"] = "products"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["products"] = "products"
       end
-      @hash
+      @_hash
     end
 
     def initialize(products = nil)
@@ -21,20 +21,18 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        # Parameter is an array, so we need to iterate through it
-        products = nil
-        if hash["products"] != nil
-          products = Array.new
-          hash["products"].each{|structure| products << (Product.from_hash(structure) if structure)}
-        end
+      return nil unless hash
 
-        # Create object from extracted values
-        ProductCollection.new(products)
+      # Extract variables from the hash
+      # Parameter is an array, so we need to iterate through it
+      products = nil
+      if hash['products'] != nil
+        products = Array.new
+        hash['products'].each{|structure| products << (Product.from_hash(structure) if structure)}
       end
+
+      # Create object from extracted values
+      ProductCollection.new(products)
     end
   end
 end

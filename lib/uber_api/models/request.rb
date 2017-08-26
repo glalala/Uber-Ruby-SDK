@@ -34,18 +34,18 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["driver"] = "driver"
-        @hash["eta"] = "eta"
-        @hash["location"] = "location"
-        @hash["request_id"] = "request_id"
-        @hash["status"] = "status"
-        @hash["surge_multiplier"] = "surge_multiplier"
-        @hash["vehicle"] = "vehicle"
-        @hash = super().merge(@hash) 
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["driver"] = "driver"
+        @_hash["eta"] = "eta"
+        @_hash["location"] = "location"
+        @_hash["request_id"] = "request_id"
+        @_hash["status"] = "status"
+        @_hash["surge_multiplier"] = "surge_multiplier"
+        @_hash["vehicle"] = "vehicle"
+        @_hash = super().merge(@_hash)
       end
-      @hash
+      @_hash
     end
 
     def initialize(driver = nil,
@@ -72,36 +72,34 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        driver = hash["driver"]
-        # Parameter is an array, so we need to iterate through it
-        errors = nil
-        if hash["errors"] != nil
-          errors = Array.new
-          hash["errors"].each{|structure| errors << (Errors.from_hash(structure) if structure)}
-        end
-        eta = hash["eta"]
-        location = hash["location"]
-        meta = hash["meta"]
-        request_id = hash["request_id"]
-        status = hash["status"]
-        surge_multiplier = hash["surge_multiplier"]
-        vehicle = hash["vehicle"]
+      return nil unless hash
 
-        # Create object from extracted values
-        Request.new(driver,
-                    errors,
-                    eta,
-                    location,
-                    meta,
-                    request_id,
-                    status,
-                    surge_multiplier,
-                    vehicle)
+      # Extract variables from the hash
+      driver = hash['driver']
+      # Parameter is an array, so we need to iterate through it
+      errors = nil
+      if hash['errors'] != nil
+        errors = Array.new
+        hash['errors'].each{|structure| errors << (Errors.from_hash(structure) if structure)}
       end
+      eta = hash['eta']
+      location = hash['location']
+      meta = hash['meta']
+      request_id = hash['request_id']
+      status = hash['status']
+      surge_multiplier = hash['surge_multiplier']
+      vehicle = hash['vehicle']
+
+      # Create object from extracted values
+      Request.new(driver,
+                  errors,
+                  eta,
+                  location,
+                  meta,
+                  request_id,
+                  status,
+                  surge_multiplier,
+                  vehicle)
     end
   end
 end

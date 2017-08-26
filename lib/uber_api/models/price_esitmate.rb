@@ -40,19 +40,19 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["currency_code"] = "currency_code"
-        @hash["display_name"] = "display_name"
-        @hash["distance"] = "distance"
-        @hash["duration"] = "duration"
-        @hash["estimate"] = "estimate"
-        @hash["high_estimate"] = "high_estimate"
-        @hash["low_estimate"] = "low_estimate"
-        @hash["product_id"] = "product_id"
-        @hash["surge_multiplier"] = "surge_multiplier"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["currency_code"] = "currency_code"
+        @_hash["display_name"] = "display_name"
+        @_hash["distance"] = "distance"
+        @_hash["duration"] = "duration"
+        @_hash["estimate"] = "estimate"
+        @_hash["high_estimate"] = "high_estimate"
+        @_hash["low_estimate"] = "low_estimate"
+        @_hash["product_id"] = "product_id"
+        @_hash["surge_multiplier"] = "surge_multiplier"
       end
-      @hash
+      @_hash
     end
 
     def initialize(currency_code = nil,
@@ -77,31 +77,29 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        currency_code = hash["currency_code"]
-        display_name = hash["display_name"]
-        distance = hash["distance"]
-        duration = hash["duration"]
-        estimate = hash["estimate"]
-        high_estimate = hash["high_estimate"]
-        low_estimate = hash["low_estimate"]
-        product_id = hash["product_id"]
-        surge_multiplier = hash["surge_multiplier"]
+      return nil unless hash
 
-        # Create object from extracted values
-        PriceEsitmate.new(currency_code,
-                          display_name,
-                          distance,
-                          duration,
-                          estimate,
-                          high_estimate,
-                          low_estimate,
-                          product_id,
-                          surge_multiplier)
-      end
+      # Extract variables from the hash
+      currency_code = hash['currency_code']
+      display_name = hash['display_name']
+      distance = hash['distance']
+      duration = hash['duration']
+      estimate = hash['estimate']
+      high_estimate = hash['high_estimate']
+      low_estimate = hash['low_estimate']
+      product_id = hash['product_id']
+      surge_multiplier = hash['surge_multiplier']
+
+      # Create object from extracted values
+      PriceEsitmate.new(currency_code,
+                        display_name,
+                        distance,
+                        duration,
+                        estimate,
+                        high_estimate,
+                        low_estimate,
+                        product_id,
+                        surge_multiplier)
     end
   end
 end

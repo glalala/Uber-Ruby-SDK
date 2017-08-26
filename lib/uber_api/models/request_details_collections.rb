@@ -32,17 +32,17 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["driver"] = "driver"
-        @hash["eta"] = "eta"
-        @hash["location"] = "location"
-        @hash["request_id"] = "request_id"
-        @hash["status"] = "status"
-        @hash["surge_multiplier"] = "surge_multiplier"
-        @hash["vehicle"] = "vehicle"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["driver"] = "driver"
+        @_hash["eta"] = "eta"
+        @_hash["location"] = "location"
+        @_hash["request_id"] = "request_id"
+        @_hash["status"] = "status"
+        @_hash["surge_multiplier"] = "surge_multiplier"
+        @_hash["vehicle"] = "vehicle"
       end
-      @hash
+      @_hash
     end
 
     def initialize(driver = nil,
@@ -63,27 +63,25 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        driver = Driver.from_hash(hash["driver"]) if hash["driver"]
-        eta = hash["eta"]
-        location = Location.from_hash(hash["location"]) if hash["location"]
-        request_id = hash["request_id"]
-        status = hash["status"]
-        surge_multiplier = hash["surge_multiplier"]
-        vehicle = Vehicle.from_hash(hash["vehicle"]) if hash["vehicle"]
+      return nil unless hash
 
-        # Create object from extracted values
-        RequestDetailsCollections.new(driver,
-                                      eta,
-                                      location,
-                                      request_id,
-                                      status,
-                                      surge_multiplier,
-                                      vehicle)
-      end
+      # Extract variables from the hash
+      driver = Driver.from_hash(hash['driver']) if hash['driver']
+      eta = hash['eta']
+      location = Location.from_hash(hash['location']) if hash['location']
+      request_id = hash['request_id']
+      status = hash['status']
+      surge_multiplier = hash['surge_multiplier']
+      vehicle = Vehicle.from_hash(hash['vehicle']) if hash['vehicle']
+
+      # Create object from extracted values
+      RequestDetailsCollections.new(driver,
+                                    eta,
+                                    location,
+                                    request_id,
+                                    status,
+                                    surge_multiplier,
+                                    vehicle)
     end
   end
 end

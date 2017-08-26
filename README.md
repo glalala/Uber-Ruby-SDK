@@ -1,5 +1,7 @@
 # Getting started
 
+The Uber API makes it easy to tap into the digital mesh that runs across cities. Make requests to our API endpoints and we'll give you everything you need to create new and magical experiences for your users. The possibilities are endless!
+
 ## How to Build
 
 This client library is a Ruby gem which can be compiled and used in your Ruby and Ruby on Rails project. This library requires a few gems from the RubyGems repository.
@@ -69,7 +71,7 @@ In order to setup authentication and initialization of the API client, you need 
 
 | Parameter | Description |
 |-----------|-------------|
-| o_auth_access_token | The OAuth 2.0 access token to be set before API calls |
+| o_auth_access_token | OAuth 2.0 Access Token |
 
 
 
@@ -77,24 +79,28 @@ API client can be initialized as following.
 
 ```ruby
 # Configuration parameters and credentials
-o_auth_access_token = "o_auth_access_token"; # The OAuth 2.0 access token to be set before API calls
+o_auth_access_token = 'o_auth_access_token' # OAuth 2.0 Access Token
 
-client = UberApi::UberApiClient.new(o_auth_access_token)
+client = UberApi::UberApiClient.new(
+  o_auth_access_token: o_auth_access_token
+)
 ```
 
 The added initlization code can be debugged by putting a breakpoint in the ``` Index ``` method and running the project in debug mode by selecting ``` Run -> Debug 'Development: TestApp' ```.
 
 ![Debug the TestApp](https://apidocs.io/illustration/ruby?step=addCode4&workspaceFolder=Uber%20API-Ruby&workspaceName=UberApi&projectName=uber_api&gemName=uber_api&gemVer=1.0.0&initLine=client%2520%253D%2520UberApiClient.new%2528%2527o_auth_access_token%2527%2529)
 
-## Class Reference
 
-### <a name="list_of_controllers"></a>List of Controllers
+
+# Class Reference
+
+## <a name="list_of_controllers"></a>List of Controllers
 
 * [APIController](#api_controller)
 
-### <a name="api_controller"></a>![Class: ](https://apidocs.io/img/class.png ".APIController") APIController
+## <a name="api_controller"></a>![Class: ](https://apidocs.io/img/class.png ".APIController") APIController
 
-#### Get singleton instance
+### Get singleton instance
 
 The singleton instance of the ``` APIController ``` class can be accessed from the API Client.
 
@@ -102,7 +108,7 @@ The singleton instance of the ``` APIController ``` class can be accessed from t
 client = client.client
 ```
 
-#### <a name="get_product_detail_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_product_detail_by_id") get_product_detail_by_id
+### <a name="get_product_detail_by_id"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_product_detail_by_id") get_product_detail_by_id
 
 > Get product details w.r.t id
 
@@ -128,7 +134,7 @@ result = client.get_product_detail_by_id(product_id)
 ```
 
 
-#### <a name="get_user_profile"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_user_profile") get_user_profile
+### <a name="get_user_profile"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_user_profile") get_user_profile
 
 > The User Profile endpoint returns information about the Uber user that has authorized with the application.
 
@@ -160,13 +166,13 @@ result = client.get_user_profile()
 
 
 
-#### <a name="get_products_types"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_products_types") get_products_types
+### <a name="get_products_types"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_products_types") get_products_types
 
 > The Products endpoint returns information about the Uber products offered at a given location. The response includes the display name and other details about each product, and lists the products in the proper display order.
 
 
 ```ruby
-def get_products_types(latitude, 
+def get_products_types(latitude,
                            longitude); end
 ```
 
@@ -181,8 +187,8 @@ def get_products_types(latitude,
 #### Example Usage
 
 ```ruby
-latitude = 139.610573416394
-longitude = 139.610573416394
+latitude = 164.90124410945
+longitude = 164.90124410945
 
 result = client.get_products_types(latitude, longitude)
 
@@ -203,7 +209,7 @@ result = client.get_products_types(latitude, longitude)
 
 
 
-#### <a name="get_request_details"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_request_details") get_request_details
+### <a name="get_request_details"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_request_details") get_request_details
 
 > Get the real time status of an ongoing trip that was created using the Ride Request endpoint.
 
@@ -244,13 +250,13 @@ result = client.get_request_details(request_id)
 
 
 
-#### <a name="get_user_activity_v_1_1"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_user_activity_v_1_1") get_user_activity_v_1_1
+### <a name="get_user_activity_v_1_1"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_user_activity_v_1_1") get_user_activity_v_1_1
 
 > The User Activity endpoint returns data about a user's lifetime activity with Uber. The response will include pickup locations and times, dropoff locations and times, the distance of past requests, and information about which products were requested.
 
 
 ```ruby
-def get_user_activity_v_1_1(limit, 
+def get_user_activity_v_1_1(limit,
                                 offset); end
 ```
 
@@ -265,8 +271,8 @@ def get_user_activity_v_1_1(limit,
 #### Example Usage
 
 ```ruby
-limit = 139
-offset = 139
+limit = 164
+offset = 164
 
 result = client.get_user_activity_v_1_1(limit, offset)
 
@@ -287,15 +293,15 @@ result = client.get_user_activity_v_1_1(limit, offset)
 
 
 
-#### <a name="get_time_estimates"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_time_estimates") get_time_estimates
+### <a name="get_time_estimates"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_time_estimates") get_time_estimates
 
 > The Time Estimates endpoint returns ETAs for all products offered at a given location, with the responses expressed as integers in seconds. We recommend that this endpoint be called every minute to provide the most accurate, up-to-date ETAs.
 
 
 ```ruby
-def get_time_estimates(start_latitude, 
-                           start_longitude, 
-                           customer_uuid = nil, 
+def get_time_estimates(start_latitude,
+                           start_longitude,
+                           customer_uuid = nil,
                            product_id = nil); end
 ```
 
@@ -312,8 +318,8 @@ def get_time_estimates(start_latitude,
 #### Example Usage
 
 ```ruby
-start_latitude = 139.610573416394
-start_longitude = 139.610573416394
+start_latitude = 164.90124410945
+start_longitude = 164.90124410945
 customer_uuid = 'customer_uuid'
 product_id = 'product_id'
 
@@ -336,15 +342,15 @@ result = client.get_time_estimates(start_latitude, start_longitude, customer_uui
 
 
 
-#### <a name="get_price_estimates"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_price_estimates") get_price_estimates
+### <a name="get_price_estimates"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_price_estimates") get_price_estimates
 
 > The Price Estimates endpoint returns an estimated price range for each product offered at a given location. The price estimate is provided as a formatted string with the full price range and the localized currency symbol.
 
 
 ```ruby
-def get_price_estimates(end_latitude, 
-                            end_longitude, 
-                            start_latitude, 
+def get_price_estimates(end_latitude,
+                            end_longitude,
+                            start_latitude,
                             start_longitude); end
 ```
 
@@ -361,10 +367,10 @@ def get_price_estimates(end_latitude,
 #### Example Usage
 
 ```ruby
-end_latitude = 139.610573416394
-end_longitude = 139.610573416394
-start_latitude = 139.610573416394
-start_longitude = 139.610573416394
+end_latitude = 164.90124410945
+end_longitude = 164.90124410945
+start_latitude = 164.90124410945
+start_longitude = 164.90124410945
 
 result = client.get_price_estimates(end_latitude, end_longitude, start_latitude, start_longitude)
 
@@ -385,7 +391,7 @@ result = client.get_price_estimates(end_latitude, end_longitude, start_latitude,
 
 
 
-#### <a name="get_request_map"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_request_map") get_request_map
+### <a name="get_request_map"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_request_map") get_request_map
 
 > Get a map with a visual representation of a Request.
 
@@ -426,7 +432,7 @@ result = client.get_request_map(request_id)
 
 
 
-#### <a name="delete_request_cancel"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.delete_request_cancel") delete_request_cancel
+### <a name="delete_request_cancel"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.delete_request_cancel") delete_request_cancel
 
 > Cancel an ongoing Request on behalf of a rider.
 
@@ -467,7 +473,7 @@ client.delete_request_cancel(request_id)
 
 
 
-#### <a name="create_request"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.create_request") create_request
+### <a name="create_request"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.create_request") create_request
 
 > The Request endpoint allows a ride to be requested on behalf of an Uber user given their desired product, start, and end locations. Please review the Sandbox documentation on how to develop and test against these endpoints without making real-world Requests and being charged.
 
@@ -508,15 +514,15 @@ result = client.create_request(body)
 
 
 
-#### <a name="get_promotions"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_promotions") get_promotions
+### <a name="get_promotions"></a>![Method: ](https://apidocs.io/img/method.png ".APIController.get_promotions") get_promotions
 
 > The Promotions endpoint returns information about the promotion that will be available to a new user based on their activity's location. These promotions do not apply for existing users.
 
 
 ```ruby
-def get_promotions(end_latitude, 
-                       end_longitude, 
-                       start_latitude, 
+def get_promotions(end_latitude,
+                       end_longitude,
+                       start_latitude,
                        start_longitude); end
 ```
 
@@ -533,10 +539,10 @@ def get_promotions(end_latitude,
 #### Example Usage
 
 ```ruby
-end_latitude = 139.610573416394
-end_longitude = 139.610573416394
-start_latitude = 139.610573416394
-start_longitude = 139.610573416394
+end_latitude = 164.90124410945
+end_longitude = 164.90124410945
+start_latitude = 164.90124410945
+start_longitude = 164.90124410945
 
 result = client.get_promotions(end_latitude, end_longitude, start_latitude, start_longitude)
 

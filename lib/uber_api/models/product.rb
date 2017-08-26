@@ -24,15 +24,15 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["capacity"] = "capacity"
-        @hash["description"] = "description"
-        @hash["display_name"] = "display_name"
-        @hash["image"] = "image"
-        @hash["product_id"] = "product_id"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["capacity"] = "capacity"
+        @_hash["description"] = "description"
+        @_hash["display_name"] = "display_name"
+        @_hash["image"] = "image"
+        @_hash["product_id"] = "product_id"
       end
-      @hash
+      @_hash
     end
 
     def initialize(capacity = nil,
@@ -49,23 +49,21 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        capacity = hash["capacity"]
-        description = hash["description"]
-        display_name = hash["display_name"]
-        image = hash["image"]
-        product_id = hash["product_id"]
+      return nil unless hash
 
-        # Create object from extracted values
-        Product.new(capacity,
-                    description,
-                    display_name,
-                    image,
-                    product_id)
-      end
+      # Extract variables from the hash
+      capacity = hash['capacity']
+      description = hash['description']
+      display_name = hash['display_name']
+      image = hash['image']
+      product_id = hash['product_id']
+
+      # Create object from extracted values
+      Product.new(capacity,
+                  description,
+                  display_name,
+                  image,
+                  product_id)
     end
   end
 end

@@ -28,16 +28,16 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["end_latitude"] = "end_latitude"
-        @hash["end_longitude"] = "end_longitude"
-        @hash["product_id"] = "product_id"
-        @hash["start_latitude"] = "start_latitude"
-        @hash["start_longitude"] = "start_longitude"
-        @hash["surge_confirmation_id"] = "surge_confirmation_id"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["end_latitude"] = "end_latitude"
+        @_hash["end_longitude"] = "end_longitude"
+        @_hash["product_id"] = "product_id"
+        @_hash["start_latitude"] = "start_latitude"
+        @_hash["start_longitude"] = "start_longitude"
+        @_hash["surge_confirmation_id"] = "surge_confirmation_id"
       end
-      @hash
+      @_hash
     end
 
     def initialize(end_latitude = nil,
@@ -56,25 +56,23 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        end_latitude = hash["end_latitude"]
-        end_longitude = hash["end_longitude"]
-        product_id = hash["product_id"]
-        start_latitude = hash["start_latitude"]
-        start_longitude = hash["start_longitude"]
-        surge_confirmation_id = hash["surge_confirmation_id"]
+      return nil unless hash
 
-        # Create object from extracted values
-        RequestBody.new(end_latitude,
-                        end_longitude,
-                        product_id,
-                        start_latitude,
-                        start_longitude,
-                        surge_confirmation_id)
-      end
+      # Extract variables from the hash
+      end_latitude = hash['end_latitude']
+      end_longitude = hash['end_longitude']
+      product_id = hash['product_id']
+      start_latitude = hash['start_latitude']
+      start_longitude = hash['start_longitude']
+      surge_confirmation_id = hash['surge_confirmation_id']
+
+      # Create object from extracted values
+      RequestBody.new(end_latitude,
+                      end_longitude,
+                      product_id,
+                      start_latitude,
+                      start_longitude,
+                      surge_confirmation_id)
     end
   end
 end

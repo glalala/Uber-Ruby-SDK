@@ -24,15 +24,15 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["email"] = "email"
-        @hash["first_name"] = "first_name"
-        @hash["last_name"] = "last_name"
-        @hash["picture"] = "picture"
-        @hash["promo_code"] = "promo_code"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["email"] = "email"
+        @_hash["first_name"] = "first_name"
+        @_hash["last_name"] = "last_name"
+        @_hash["picture"] = "picture"
+        @_hash["promo_code"] = "promo_code"
       end
-      @hash
+      @_hash
     end
 
     def initialize(email = nil,
@@ -49,23 +49,21 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        email = hash["email"]
-        first_name = hash["first_name"]
-        last_name = hash["last_name"]
-        picture = hash["picture"]
-        promo_code = hash["promo_code"]
+      return nil unless hash
 
-        # Create object from extracted values
-        UserProfile.new(email,
-                        first_name,
-                        last_name,
-                        picture,
-                        promo_code)
-      end
+      # Extract variables from the hash
+      email = hash['email']
+      first_name = hash['first_name']
+      last_name = hash['last_name']
+      picture = hash['picture']
+      promo_code = hash['promo_code']
+
+      # Create object from extracted values
+      UserProfile.new(email,
+                      first_name,
+                      last_name,
+                      picture,
+                      promo_code)
     end
   end
 end
