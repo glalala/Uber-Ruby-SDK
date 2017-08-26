@@ -20,14 +20,14 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["count"] = "count"
-        @hash["history"] = "history"
-        @hash["limit"] = "limit"
-        @hash["offset"] = "offset"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["count"] = "count"
+        @_hash["history"] = "history"
+        @_hash["limit"] = "limit"
+        @_hash["offset"] = "offset"
       end
-      @hash
+      @_hash
     end
 
     def initialize(count = nil,
@@ -42,26 +42,24 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        count = hash["count"]
-        # Parameter is an array, so we need to iterate through it
-        history = nil
-        if hash["history"] != nil
-          history = Array.new
-          hash["history"].each{|structure| history << (History.from_hash(structure) if structure)}
-        end
-        limit = hash["limit"]
-        offset = hash["offset"]
+      return nil unless hash
 
-        # Create object from extracted values
-        UserActivity.new(count,
-                         history,
-                         limit,
-                         offset)
+      # Extract variables from the hash
+      count = hash['count']
+      # Parameter is an array, so we need to iterate through it
+      history = nil
+      if hash['history'] != nil
+        history = Array.new
+        hash['history'].each{|structure| history << (History.from_hash(structure) if structure)}
       end
+      limit = hash['limit']
+      offset = hash['offset']
+
+      # Create object from extracted values
+      UserActivity.new(count,
+                       history,
+                       limit,
+                       offset)
     end
   end
 end

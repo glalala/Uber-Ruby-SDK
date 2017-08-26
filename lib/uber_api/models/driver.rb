@@ -20,14 +20,14 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["name"] = "name"
-        @hash["phone_number"] = "phone_number"
-        @hash["picture_url"] = "picture_url"
-        @hash["rating"] = "rating"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["name"] = "name"
+        @_hash["phone_number"] = "phone_number"
+        @_hash["picture_url"] = "picture_url"
+        @_hash["rating"] = "rating"
       end
-      @hash
+      @_hash
     end
 
     def initialize(name = nil,
@@ -42,21 +42,19 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        name = hash["name"]
-        phone_number = hash["phone_number"]
-        picture_url = hash["picture_url"]
-        rating = hash["rating"]
+      return nil unless hash
 
-        # Create object from extracted values
-        Driver.new(name,
-                   phone_number,
-                   picture_url,
-                   rating)
-      end
+      # Extract variables from the hash
+      name = hash['name']
+      phone_number = hash['phone_number']
+      picture_url = hash['picture_url']
+      rating = hash['rating']
+
+      # Create object from extracted values
+      Driver.new(name,
+                 phone_number,
+                 picture_url,
+                 rating)
     end
   end
 end

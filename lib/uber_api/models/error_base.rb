@@ -12,12 +12,12 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["errors"] = "errors"
-        @hash["meta"] = "meta"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["errors"] = "errors"
+        @_hash["meta"] = "meta"
       end
-      @hash
+      @_hash
     end
 
     def initialize(errors = nil,
@@ -28,22 +28,20 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        # Parameter is an array, so we need to iterate through it
-        errors = nil
-        if hash["errors"] != nil
-          errors = Array.new
-          hash["errors"].each{|structure| errors << (Errors.from_hash(structure) if structure)}
-        end
-        meta = hash["meta"]
+      return nil unless hash
 
-        # Create object from extracted values
-        ErrorBase.new(errors,
-                      meta)
+      # Extract variables from the hash
+      # Parameter is an array, so we need to iterate through it
+      errors = nil
+      if hash['errors'] != nil
+        errors = Array.new
+        hash['errors'].each{|structure| errors << (Errors.from_hash(structure) if structure)}
       end
+      meta = hash['meta']
+
+      # Create object from extracted values
+      ErrorBase.new(errors,
+                    meta)
     end
   end
 end

@@ -12,12 +12,12 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["href"] = "href"
-        @hash["surge_confirmation_id"] = "surge_confirmation_id"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["href"] = "href"
+        @_hash["surge_confirmation_id"] = "surge_confirmation_id"
       end
-      @hash
+      @_hash
     end
 
     def initialize(href = nil,
@@ -28,17 +28,15 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        href = hash["href"]
-        surge_confirmation_id = hash["surge_confirmation_id"]
+      return nil unless hash
 
-        # Create object from extracted values
-        SurgeConfirmation.new(href,
-                              surge_confirmation_id)
-      end
+      # Extract variables from the hash
+      href = hash['href']
+      surge_confirmation_id = hash['surge_confirmation_id']
+
+      # Create object from extracted values
+      SurgeConfirmation.new(href,
+                            surge_confirmation_id)
     end
   end
 end

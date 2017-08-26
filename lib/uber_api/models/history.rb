@@ -40,19 +40,19 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["distance"] = "distance"
-        @hash["end_location"] = "end_location"
-        @hash["end_time"] = "end_time"
-        @hash["product_id"] = "product_id"
-        @hash["request_time"] = "request_time"
-        @hash["start_location"] = "start_location"
-        @hash["start_time"] = "start_time"
-        @hash["status"] = "status"
-        @hash["uuid"] = "uuid"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["distance"] = "distance"
+        @_hash["end_location"] = "end_location"
+        @_hash["end_time"] = "end_time"
+        @_hash["product_id"] = "product_id"
+        @_hash["request_time"] = "request_time"
+        @_hash["start_location"] = "start_location"
+        @_hash["start_time"] = "start_time"
+        @_hash["status"] = "status"
+        @_hash["uuid"] = "uuid"
       end
-      @hash
+      @_hash
     end
 
     def initialize(distance = nil,
@@ -77,31 +77,29 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        distance = hash["distance"]
-        end_location = Location.from_hash(hash["end_location"]) if hash["end_location"]
-        end_time = hash["end_time"]
-        product_id = hash["product_id"]
-        request_time = hash["request_time"]
-        start_location = Location.from_hash(hash["start_location"]) if hash["start_location"]
-        start_time = hash["start_time"]
-        status = hash["status"]
-        uuid = hash["uuid"]
+      return nil unless hash
 
-        # Create object from extracted values
-        History.new(distance,
-                    end_location,
-                    end_time,
-                    product_id,
-                    request_time,
-                    start_location,
-                    start_time,
-                    status,
-                    uuid)
-      end
+      # Extract variables from the hash
+      distance = hash['distance']
+      end_location = Location.from_hash(hash['end_location']) if hash['end_location']
+      end_time = hash['end_time']
+      product_id = hash['product_id']
+      request_time = hash['request_time']
+      start_location = Location.from_hash(hash['start_location']) if hash['start_location']
+      start_time = hash['start_time']
+      status = hash['status']
+      uuid = hash['uuid']
+
+      # Create object from extracted values
+      History.new(distance,
+                  end_location,
+                  end_time,
+                  product_id,
+                  request_time,
+                  start_location,
+                  start_time,
+                  status,
+                  uuid)
     end
   end
 end

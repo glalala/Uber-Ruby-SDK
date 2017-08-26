@@ -16,13 +16,13 @@ module UberApi
 
     # A mapping from model property names to API property names
     def self.names
-      if @hash.nil?
-        @hash = {}
-        @hash["code"] = "code"
-        @hash["status"] = "status"
-        @hash["title"] = "title"
+      if @_hash.nil?
+        @_hash = {}
+        @_hash["code"] = "code"
+        @_hash["status"] = "status"
+        @_hash["title"] = "title"
       end
-      @hash
+      @_hash
     end
 
     def initialize(code = nil,
@@ -35,19 +35,17 @@ module UberApi
 
     # Creates an instance of the object from a hash
     def self.from_hash(hash)
-      if hash == nil
-        nil
-      else
-        # Extract variables from the hash
-        code = hash["code"]
-        status = hash["status"]
-        title = hash["title"]
+      return nil unless hash
 
-        # Create object from extracted values
-        Errors.new(code,
-                   status,
-                   title)
-      end
+      # Extract variables from the hash
+      code = hash['code']
+      status = hash['status']
+      title = hash['title']
+
+      # Create object from extracted values
+      Errors.new(code,
+                 status,
+                 title)
     end
   end
 end
